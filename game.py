@@ -20,6 +20,7 @@ frames = pygame.time.Clock()
 """Game settings"""
 pygame.font.init()
 font = pygame.font.SysFont('Comic Sans MS',25)
+gameoverText = pygame.font.SysFont('Comic Sans MS', 40)
 screen = pygame.display.set_mode((WIDTH,HEIGHT))
 pygame.key.set_repeat(10,player_speed)
 game_over = False
@@ -61,6 +62,7 @@ def collisions(enemy_list, player_position,enemy_size, player_size):
 """Game objects"""
 continueButton = font.render('Continue',False,(0,0,0))
 quitButton = font.render('Quit',False,(0,0,0))
+gameOver = font.render('GAME OVER', False, (150,0,255))
 
 
 def blur(x):
@@ -81,8 +83,8 @@ def paused(paused, enemy_list, player_position):
     quit_position_x = WIDTH/3*2-2
     quit_position_y = HEIGHT/1.7
     quit_size = [110,35]
-    
     blur(10)
+    screen.blit(gameOver,(WIDTH/2-80,HEIGHT/3))
     while paused:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
